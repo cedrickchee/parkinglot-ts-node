@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import readline from "readline";
 import ParkingLot from "./parkinglot";
 
@@ -6,7 +8,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-function main() {
+function main(): void {
   const p = new ParkingLot();
   rl.on("line", async input => {
     const inp = input.split(" ");
