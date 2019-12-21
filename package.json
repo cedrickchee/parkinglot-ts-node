@@ -2,8 +2,36 @@
   "name": "parkinglot-ts-node",
   "version": "0.0.1",
   "description": "Algorithm for parking lot problem in TS",
-  "main": "index.ts",
+  "main": "src/app.ts",
   "author": "Cedric Chee",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-typescript": "^6.3.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.19.1",
+    "husky": "^3.1.0",
+    "prettier": "1.19.1",
+    "pretty-quick": "^2.0.1",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.7.4"
+  },
+  "scripts": {
+    "start:dev": "yarn dev",
+    "start": "yarn build && node build/app.js",
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/app.ts",
+    "build": "tsc",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "test": "jest",
+    "debug": "yarn build && node --inspect build/app.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }
