@@ -1,0 +1,9 @@
+{
+  "name": "parkinglot-ts-node",
+  "version": "0.0.1",
+  "description": "Algorithm for parking lot problem in TS",
+  "main": "index.ts",
+  "author": "Cedric Chee",
+  "license": "MIT",
+  "private": true
+}
