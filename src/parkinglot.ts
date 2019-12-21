@@ -1,5 +1,11 @@
+interface Car {
+  slot: number;
+  registrationNumber: string;
+  color: string;
+}
+
 class ParkingLot {
-  public car: any[];
+  public car: Car[];
 
   public maxSize: number;
 
@@ -11,7 +17,7 @@ class ParkingLot {
     this.availableSlot = [];
   }
 
-  async create(noOfLot: number) {
+  async create(noOfLot: number): Promise<string> {
     try {
       this.maxSize = noOfLot;
     } catch (e) {
