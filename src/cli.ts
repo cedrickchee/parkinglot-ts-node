@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 
 import readline from "readline";
-// import ParkingLot from "./main";
+
 import ParkingLot from "./models/repository/parkinglot";
 import Car from "./models/car";
 
@@ -13,41 +13,8 @@ const rl = readline.createInterface({
 });
 
 function main(): void {
-  // const parkinglot = new ParkingLot();
-  // rl.on("line", async (input: string) => {
-  //   const args: string[] = input.split(" ");
-
-  //   switch (args[0]) {
-  //     case "create_parking_lot":
-  //       try {
-  //         const result = await parkinglot.create(parseInt(args[1], 10));
-  //         console.log(result);
-  //       } catch (error) {
-  //         console.log(`error occured ==> ${error}`);
-  //       }
-  //       break;
-
-  //     default:
-  //       // TODO: write better message to stdout.
-  //       // i.e. "Seems like an issue with command that you typed, please note predefined commands
-  //       // are case sensitive and matched as per the description!"
-  //       console.log("Invalid command.");
-  //   }
-  // });
-
   // New parking lot in Raffles Road
   const parkinglot = new ParkingLot("Raffles Road");
-
-  // New cars
-  // const carToyota = new Car("KA-01-HH-1234", "White", "Toyota", 3.5, 1.2, "Test-1");
-  // const carFord = new Car("KA-01-BB-0001", "Black", "Ford", 2.5, 1.4, "Test-2");
-
-  // Cars are entering, all tickets are saved
-  // const ticketToyota = parkinglot.parkVehicle(carToyota);
-  // const ticketFord = parkinglot.parkVehicle(carFord);
-
-  // Cars are exiting
-  // const myCarToyota = parkinglot.exitVehicle(ticketToyota);
 
   rl.on("line", (input: string) => {
     const args: string[] = input.split(" ");
@@ -72,11 +39,10 @@ function main(): void {
             "Toyota",
             3.5,
             1.2,
-            "Test-1"
+            true
           );
           const result = parkinglot.parkVehicle(carToyota);
           console.log(result);
-          // console.log("Available slots:", parkinglot.AvailableSlotsCount);
         } catch (e) {
           console.log(`error occured ==> ${e}`);
         }
@@ -139,5 +105,13 @@ function main(): void {
     }
   });
 }
+
+rl.on("SIGINT", () => {
+  rl.question("Are you sure you want to quit? (yes/no) ", (answer: string) => {
+    if (answer.match(/^y(es)?$/i)) {
+      rl.pause();
+    }
+  });
+});
 
 main();

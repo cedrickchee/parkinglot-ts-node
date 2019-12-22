@@ -1,7 +1,7 @@
 import Vehicle from "./vehicle";
 
 class Car extends Vehicle {
-  private carInsurance: string;
+  private isElectric: boolean;
 
   constructor(
     licensePlate: string,
@@ -9,18 +9,18 @@ class Car extends Vehicle {
     brand: string,
     height: number,
     weight: number,
-    carInsurance: string
+    isElectric: boolean
   ) {
     super(licensePlate, color, brand, height, weight);
-    this.carInsurance = carInsurance;
+    this.isElectric = isElectric;
   }
 
-  get CarInsurance() {
-    return this.carInsurance;
+  get IsElectric() {
+    return this.isElectric;
   }
 
-  set CarInsurance(carInsurance: string) {
-    this.carInsurance = carInsurance;
+  set IsElectric(isElectric: boolean) {
+    this.isElectric = isElectric;
   }
 }
 
