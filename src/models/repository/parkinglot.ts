@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import Vehicle from "../vehicle";
 import Ticket from "../ticket";
 
