@@ -161,8 +161,27 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     }
 
     if (this.vehicles.length > 0) {
-      // TODO
-      return "";
+      const matches = new Array<string>();
+      this.vehicles.forEach((row: Vehicle) => {
+        if (row.Color === color) {
+          matches.push(row.LicensePlate);
+        }
+      });
+
+      let finalResult = "";
+      if (matches.length === 0) {
+        return "Not found";
+      }
+
+      for (let i = 0; i < matches.length; i++) {
+        if (!(i === matches.length - 1)) {
+          finalResult += `${matches[i]}, `;
+        } else {
+          finalResult += matches[i];
+        }
+      }
+
+      return finalResult;
     }
 
     return "Not found";
