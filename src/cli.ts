@@ -111,6 +111,16 @@ function main(): void {
         }
         break;
 
+      case "slot_numbers_for_cars_with_colour":
+        try {
+          const color = args[1].trim();
+          const result = parkinglot.getSlotNumbersFromColor(color);
+          console.log(result);
+        } catch (e) {
+          console.log(`error occured ==> ${e}`);
+        }
+        break;
+
       default:
         // TODO: write better message to stdout.
         // i.e. "Seems like an issue with command that you typed, please note predefined commands
