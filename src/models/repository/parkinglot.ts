@@ -13,6 +13,7 @@ interface ParkingLot<V, T> {
   status(): string;
   getLicensePlateFromColor(color: string): string;
   getSlotNumbersFromColor(color: string): string;
+  getSlotNumberFromLicensePlate(licensePlate: string): string;
 }
 
 type TicketOrNull = Ticket | null;
@@ -217,6 +218,29 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
       }
 
       return finalResult;
+    }
+
+    return "Not found";
+  }
+
+  getSlotNumberFromLicensePlate(licensePlate: string): string {
+    if (this.maxSize === 0) {
+      return "Parking lot is not created";
+    }
+
+    if (this.vehicles.length > 0) {
+      let matches;
+      this.vehicles.forEach((row: Vehicle) => {
+        if (row.LicensePlate === licensePlate && row.Slot) {
+          matches = row.Slot;
+        }
+      });
+
+      if (matches === undefined) {
+        return "Not found";
+      }
+
+      return matches;
     }
 
     return "Not found";

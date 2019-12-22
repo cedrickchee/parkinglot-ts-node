@@ -121,6 +121,16 @@ function main(): void {
         }
         break;
 
+      case "slot_number_for_registration_number":
+        try {
+          const licensePlate = args[1].trim();
+          const result = parkinglot.getSlotNumberFromLicensePlate(licensePlate);
+          console.log(result);
+        } catch (e) {
+          console.log(`error occured ==> ${e}`);
+        }
+        break;
+
       default:
         // TODO: write better message to stdout.
         // i.e. "Seems like an issue with command that you typed, please note predefined commands
