@@ -182,3 +182,31 @@ KA-01-HH-1234, KA-01-HH-9999, KA-01-P-333
 6
 Not found
 ```
+
+## API
+
+- `create(numLots: number): number`
+  - Creates the parking spaces.
+  - Input parameters:
+    - `numLots`: number - bound parameter for the parking slot array.
+  - Command format: `create_parking_lot {number of lots}`. Example: `create_parking_lot 6`.
+- `parkVehicle(vehicle: V): string`
+  - Parks a car to the first available slot.
+  - Input parameters:
+    - `vehicle`: Vehicle - bound parameter for the vehicle object. Example, a car object that has white color and some licence plate.
+  - Command format: `park {license plate} {color}`. Example: `park KA-01-HH-1234 White`.
+- `leave(slot: number): string`
+  - Remove the cark from parking lot.
+  - Command format: `leave {slot number}`. Example: `leave 3`.
+- `status(): string`
+  - Gets the current status for the parking lot.
+  - Command format: `status`.
+- `getLicensePlateFromColor(color: string): string`
+  - Search and get license plate from car color.
+  - Command format: `registration_numbers_for_cars_with_colour {color}`. Example: `registration_numbers_for_cars_with_colour White`.
+- `getSlotNumbersFromColor(color: string): string`
+  - Search and get slot numbers from car color.
+  - Command format: `slot_numbers_for_cars_with_colour {color}`. Example: `slot_numbers_for_cars_with_colour White`.
+- `getSlotNumberFromLicensePlate(licensePlate: string): string`
+  - Search and get slot number from license plate.
+  - Command format: `slot_number_for_registration_number {licence plate}`. Example: `slot_number_for_registration_number KA-01-HH-3141`.
