@@ -7,8 +7,8 @@ import Ticket from "../ticket";
  *Interface ParkingLot
  */
 interface ParkingLot<V, T> {
+  create(numLots: number): number;
   parkVehicle(vehicle: V): string;
-  exitVehicle(ticket: T): V;
   leave(slot: number): string;
   status(): string;
   getLicensePlateFromColor(color: string): string;
@@ -81,28 +81,6 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     this.availableSlots.shift();
 
     return `Allocated slot number: ${slot}`;
-  }
-
-  exitVehicle(ticket: TicketOrNull): VehicleOrNull {
-    // TODO: obsolete. use leave method below.
-
-    // const tkt = ticket;
-    // tkt.ExitDate = new Date();
-
-    const target = this.vehicles.find(
-      v => typeof v !== "undefined" && v.Ticket?.Id === ticket?.Id
-    );
-    if (target) {
-      const index = this.vehicles.indexOf(target);
-
-      if (index > -1) {
-        this.vehicles.splice(index, 1);
-      }
-
-      return target;
-    }
-
-    return null;
   }
 
   leave(slot: number): string {
