@@ -4,11 +4,11 @@ import Vehicle from "../vehicle";
 import Ticket from "../ticket";
 
 /*
- *Interface ParkingLot
+ * Interface ParkingLot
  */
 interface ParkingLot<V, T> {
   create(numLots: number): number;
-  parkVehicle(vehicle: V): string;
+  park(vehicle: V): string;
   leave(slot: number): string;
   status(): string;
   getLicensePlateFromColor(color: string): string;
@@ -20,7 +20,9 @@ type TicketOrNull = Ticket | null;
 type VehicleOrNull = Vehicle | null;
 
 /*
- *Concrete class
+ * Concrete ParkingLot class
+ *
+ * @class ParkingLotImpl
  */
 class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
   private address: string;
@@ -31,6 +33,11 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
 
   private availableSlots: Array<number>;
 
+  /**
+   * Creates an instance of ParkingLotImpl.
+   *
+   * @param address the parking lot location
+   */
   constructor(address: string) {
     this.address = address;
     this.vehicles = new Array<Vehicle>();
@@ -50,6 +57,11 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     return this.availableSlots.length;
   }
 
+  /**
+   * Creates the parking spaces.
+   *
+   * @param numLots bound parameter for the parking slot array
+   */
   create(numLots: number): number {
     this.maxSize = numLots;
 
@@ -60,7 +72,12 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     return this.availableSlots.length;
   }
 
-  parkVehicle(vehicle: Vehicle): string {
+  /**
+   * Parks a vehicle to the first available slot.
+   *
+   * @param vehicle the parking space should accept different vehicle type, namely, motorcycle, car, bus.
+   */
+  park(vehicle: Vehicle): string {
     if (this.maxSize === 0) {
       return "Parking lot is not created";
     }
@@ -83,6 +100,11 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     return `Allocated slot number: ${slot}`;
   }
 
+  /**
+   * Remove the vehicle from parking lot.
+   *
+   * @param slot parking slot number
+   */
   leave(slot: number): string {
     if (this.maxSize === 0) {
       return "Parking lot is not created";
@@ -119,6 +141,9 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     return "Parking lot is empty";
   }
 
+  /**
+   * Gets the current status for the parking lot.
+   */
   status(): string {
     if (this.maxSize === 0) {
       return "Parking lot is not created";
@@ -137,6 +162,11 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     return "Parking lot is empty";
   }
 
+  /**
+   * Get registration numbers of all vehicles of a particular colour
+   *
+   * @param color vehicle color
+   */
   getLicensePlateFromColor(color: string): string {
     if (this.maxSize === 0) {
       return "Parking lot is not created";
@@ -169,6 +199,11 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     return "Not found";
   }
 
+  /**
+   * Get slot numbers of all slots where a vehicle of a particular colour is parked
+   *
+   * @param color vehicle color
+   */
   getSlotNumbersFromColor(color: string): string {
     if (this.maxSize === 0) {
       return "Parking lot is not created";
@@ -201,6 +236,11 @@ class ParkingLotImpl implements ParkingLot<VehicleOrNull, TicketOrNull> {
     return "Not found";
   }
 
+  /**
+   * Get slot number in which a vehicle with a given registration number is parked
+   *
+   * @param licensePlate vehicle registration number
+   */
   getSlotNumberFromLicensePlate(licensePlate: string): string {
     if (this.maxSize === 0) {
       return "Parking lot is not created";

@@ -41,7 +41,7 @@ function main(): void {
             1.2,
             true
           );
-          const result = parkinglot.parkVehicle(carToyota);
+          const result = parkinglot.park(carToyota);
           console.log(result);
         } catch (e) {
           console.log(`error occured ==> ${e}`);
