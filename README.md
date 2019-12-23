@@ -210,3 +210,10 @@ Not found
 - `getSlotNumberFromLicensePlate(licensePlate: string): string`
   - Search and get slot number from license plate.
   - Command format: `slot_number_for_registration_number {licence plate}`. Example: `slot_number_for_registration_number KA-01-HH-3141`.
+
+## Plan
+
+- Setup test suite and write comprehensive unit tests.
+- Rewrite the command line parser so that it supports both file input and interactive input in one binary.
+- A better way to solve the problem is using data structures optimized for complexity.
+- Parking lot problem extended - the parking space should accept three different types of vehicles, namely, motorcycle, car, bus.
